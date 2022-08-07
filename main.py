@@ -6,11 +6,10 @@ from pyrogram.handlers import MessageHandler
 from pyrogram.types import (ReplyKeyboardMarkup, KeyboardButton)
 import json
 
-language_file = open("language.json","r")
+language_file = open("language.json","r", encoding='utf-8')
 language_json = json.loads(language_file.read())
 language_file.close()
 
-print(language_json['buynumber'])
 
 api_id = 3529684
 api_hash = "2c16080732e86a559fa05b20ff02acb8"
@@ -24,13 +23,18 @@ proxy = {
 
 client = pyrogram.Client('session.sh',api_id=api_id,api_hash=api_hash,bot_token=token_bot,proxy=proxy)
 
-async def showPanel(client,user_id):
+async def showMainPanel(client,user_id):
+
+	mainPanel_lang = language_json['MainPanel']
+	
 	await client.send_message(
 		user_id,
 		"jk",
 		reply_markup=ReplyKeyboardMarkup(
                 [
-                	['خرید شماره مجازی']
+                	[mainPanel_lang["buyNumberButton"]],[mainPanel_lang['getPrices']],
+                	[mainPanel_lang["charge"]],[mainPanel_lang['showMyAccount']],
+                	[mainPanel_lang["support"]]
                 ]
             ))
 
