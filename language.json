@@ -1,10 +1,14 @@
 {
 	"MainPanel":
 	{
-	"buyNumberButton" : "خرید شماره مجازی ",
-	"getPrices" : "استعلام قیمت ها و موجودی",
-	"charge" : "شارژ حساب",
-	"showMyAccount" : "حساب کاربری من",
-	"support" : "پشتیبانی"
+		"buyNumberButton" : "خرید شماره مجازی ",
+		"getPrices" : "استعلام قیمت ها و موجودی",
+		"charge" : "شارژ حساب",
+		"showMyAccount" : "حساب کاربری من",
+		"support" : "پشتیبانی"
+	},
+	"ServicesPanel":
+	{
+			
 	}
 }

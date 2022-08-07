@@ -2,11 +2,15 @@ import requests
 import json
 class ApiHelper:
     def __init__(self):
-        self.url = 'https://api.numberland.ir/v2.php/?apikey=9ff5eea4fbcf9d6123644c86a34ce55d&method='
+        self.url = 'http://api.numberland.ir/v2.php/?apikey=9ff5eea4fbcf9d6123644c86a34ce55d&method='
         self.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
     def getCountries(self):
         response = requests.get(self.url+"getcountry",headers=self.headers)
+        return json.loads(response.text)
+
+    def getServices(self):
+        response = requests.get(self.url+"getservice",headers=self.headers,verify=False)
         return json.loads(response.text)
 
     def getNumbers(self):
