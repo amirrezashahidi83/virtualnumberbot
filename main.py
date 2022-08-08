@@ -14,7 +14,7 @@ language_file.close()
 
 api_id = 3529684
 api_hash = "2c16080732e86a559fa05b20ff02acb8"
-token_bot = ${{ secrets.SECRET_TOKEN }}
+token_bot = "5544674447:AAH8FRt69CMpzsqK6IFQxT8PzO9bVnqEyuc"
 
 proxy = {
      "scheme": "socks5",
