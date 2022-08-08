@@ -17,8 +17,8 @@ class ApiHelper:
         response = requests.get(self.url+'getinfo',headers=self.headers)
         return json.loads(response.text)
     
-    def getNumbersByCountry(self,country):
-        response = requests.get(self.url+'getinfo&country='+country,headers=self.headers)
+    def getNumbersByService(self,service):
+        response = requests.get(self.url+'getinfo&service='+str(service),headers=self.headers)
         return json.loads(response.text)
     
     def getBalance(self):

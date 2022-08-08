@@ -29,6 +29,10 @@ apihelper = api.ApiHelper()
 async def Support(client,user_id):
     await client.send_message(user_id,"i")
 
+async def showNumbersPanel(user_id,service):
+    allNumbers = apihelper.getNumbersByService(service)
+    await client.send_message(user_id,"allNumbers")
+
 async def showServicesPanel(client,user_id):
     
     buttons = [[]]
@@ -60,7 +64,7 @@ async def showMainPanel(client,user_id):
             ))
 
 async def start(client,message):
-	await showServicesPanel(client,message.from_user.id);
+	await showNumbersPanel(message.from_user.id,1);
 
 client.add_handler(MessageHandler(start,filters.command(['start'])))
 print("started...")
