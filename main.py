@@ -30,8 +30,18 @@ async def Support(client,user_id):
     await client.send_message(user_id,"i")
 
 async def showNumbersPanel(user_id,service):
+    buttons = [[]]
+    row = 0
     allNumbers = apihelper.getNumbersByService(service)
-    await client.send_message(user_id,"allNumbers")
+    for number in allNumbers:
+        buttons[row].append(InlineKeyboardButton(number['country'],callback_data=number['country']))
+        buttons[row].append(InlineKeyboardButton(number['amount'],callback_data=number['amount']))
+        if len (buttons[row]) == 2:
+            buttons.append([])
+            row += 1
+
+    await client.send_message(user_id,"fds",
+        reply_markup=InlineKeyboardMarkup(buttons))
 
 async def showServicesPanel(client,user_id):
     
