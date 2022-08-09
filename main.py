@@ -29,6 +29,9 @@ apihelper = api.ApiHelper()
 async def Support(client,user_id):
     await client.send_message(user_id,"i")
 
+async def showProfilePanel(user_id):
+    buttons = [] 
+    
 async def showNumbersPanel(user_id,service):
     buttons = [[]]
     row = 0
@@ -60,18 +63,18 @@ async def showServicesPanel(client,user_id):
 
 async def showMainPanel(client,user_id):
 
+    buttons =   [
+                    [mainPanel_lang["buyNumberButton"],mainPanel_lang['getPrices']],
+                    [mainPanel_lang["charge"],mainPanel_lang['showMyAccount']],
+                    [mainPanel_lang["support"]]
+                ]
+
 	mainPanel_lang = language_json['MainPanel']
 	
 	await client.send_message(
 		user_id,
 		"jk",
-		reply_markup=ReplyKeyboardMarkup(
-                [
-                	[mainPanel_lang["buyNumberButton"],mainPanel_lang['getPrices']],
-                	[mainPanel_lang["charge"],mainPanel_lang['showMyAccount']],
-                	[mainPanel_lang["support"]]
-                ]
-            ))
+		reply_markup=ReplyKeyboardMarkup(buttons))
 
 async def start(client,message):
 	await showNumbersPanel(message.from_user.id,1);
