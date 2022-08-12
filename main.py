@@ -13,22 +13,16 @@ language_file = open("language.json","r", encoding='utf-8')
 language_json = json.loads(language_file.read())
 language_file.close()
 
+config_file = open("bot_config.js","r")
+config_json = json.loads(config_file.read())
+config_file.close()
 
-api_id = 3529684
-api_hash = "2c16080732e86a559fa05b20ff02acb8"
-token_bot = "5544674447:AAH8FRt69CMpzsqK6IFQxT8PzO9bVnqEyuc"
-
-proxy = {
-     "scheme": "http",
-     "hostname": "192.168.1.3",
-     "port": 59225,
-}
-
-client = pyrogram.Client('session.sh',api_id=api_id,api_hash=api_hash,bot_token=token_bot,proxy=proxy)
+client = pyrogram.Client('session.sh',api_id=config_json['api_id'],api_hash=config_json['api_hash']
+    ,bot_token=config_json['bot_token'],proxy=config_json['proxy'])
 
 apihelper = api.ApiHelper()
 
-dbhelper = database.DatabaseHelper()
+dbhelper = database.DbHelper()
 
 async def Support(client,user_id):
     await client.send_message(user_id,"i")
