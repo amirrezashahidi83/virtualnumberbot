@@ -6,7 +6,7 @@ class DbHelper:
         self.client = motor.motor_tornado.MotorClient('localhost', 27017)
         self.users = self.client['users']
         self.transactions = self.client['transactions']
-
+        self.affilates = self.client['affilates']
     
     async def insertUser(self,username):
     	document = {username:username}
@@ -32,3 +32,15 @@ class DbHelper:
 
     async def getTransaction(self,_id):
     	return await self.transactions.find_one({'id':_id})
+
+    async def getAffilates(self,merchant_id):
+        return await self.affilates.find({'merchant_id':merchant_id})
+
+    async def insertAffilate(self,affilate_id,merchant_id):
+        document = {'affilate_id':affilate_id,'merchant_id':merchant_id}
+
+        for affilate in getAffilates(merchant_id):
+            if affilate.affilate_id == affilate_id:
+                return -1
+        return await self.affilates.insert_one(document)
+    

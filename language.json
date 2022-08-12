@@ -10,5 +10,10 @@
 	"ServicesPanel":
 	{
 			
+	},
+	"Messages":
+	{
+		"hasStarted" : "شما قبلا استارت کرده اید.",
+		"succesStarted" : "شما با موفقیت استارت کردید."
 	}
 }
