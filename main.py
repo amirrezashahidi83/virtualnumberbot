@@ -1,6 +1,7 @@
 import api
 import database
 import pyrogram
+import payment
 from pyrogram import filters
 from pyrogram.handlers import MessageHandler
 from pyrogram.types import (ReplyKeyboardMarkup, KeyboardButton,
@@ -17,9 +18,9 @@ api_hash = "2c16080732e86a559fa05b20ff02acb8"
 token_bot = "5544674447:AAH8FRt69CMpzsqK6IFQxT8PzO9bVnqEyuc"
 
 proxy = {
-     "scheme": "socks5",
-     "hostname": "127.0.0.1",
-     "port": 3000,
+     "scheme": "http",
+     "hostname": "192.168.43.165",
+     "port": 59225,
 }
 
 client = pyrogram.Client('session.sh',api_id=api_id,api_hash=api_hash,bot_token=token_bot,proxy=proxy)
@@ -68,16 +69,18 @@ async def showMainPanel(client,user_id):
                     [mainPanel_lang["charge"],mainPanel_lang['showMyAccount']],
                     [mainPanel_lang["support"]]
                 ]
-
-	mainPanel_lang = language_json['MainPanel']
+    
+    mainPanel_lang = language_json['MainPanel']
 	
-	await client.send_message(
+    await client.send_message(
 		user_id,
 		"jk",
 		reply_markup=ReplyKeyboardMarkup(buttons))
 
 async def start(client,message):
-	await showNumbersPanel(message.from_user.id,1);
+    paymentHelper = payment.PaymentHelper()
+    link = paymentHelper.createPayment(10000)
+    print(link)
 
 client.add_handler(MessageHandler(start,filters.command(['start'])))
 print("started...")
